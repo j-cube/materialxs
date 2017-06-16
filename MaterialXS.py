@@ -152,6 +152,9 @@ class StringAttribute(Attribute):
     def fromString(self, x):
         self.value = str(x)
 
+    def getStringValue(self):
+        return self.value
+
 class FloatAttribute(Attribute):
 
     def __init__(self, name, required = False, value = None):
@@ -569,14 +572,21 @@ class Material(Element):
 #
 class ShaderRef(Element):
 
-    def __init__(self, name = ''):
+    def __init__(self, name = '', shadingType = ''):
         Element.__init__(self)
 
         #
         self.attributes[kNameTag] = StringAttribute(kNameTag, True, name)
-
+        self.attributes['shadingType'] = StringAttribute('shadingType', True, shadingType)
+    
     def getTypeName(self):
         return kShaderRefTag
+
+    def getShadingType(self):
+        return self.attributes['shadingType'].getStringValue()
+
+    def setShadingType(self, newShadingType):
+        self.attributes['shadingType'] = StringAttribute('shadingType', True, newShadingType)
 
 #
 class Look(Element):
@@ -820,7 +830,7 @@ class MaterialXTest(unittest.TestCase):
 
     def __createMaterial(self, materialName, shaderName):
         sg = Material(materialName)
-        sg.children[shaderName] = ShaderRef(shaderName)
+        sg.children[shaderName] = ShaderRef(shaderName, 'surface')
 
         return sg
 
