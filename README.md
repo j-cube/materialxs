@@ -1,5 +1,3 @@
-# MaterialXS
-
 ![](https://j-cube.jp/assets/img/news/mxs.png)
 
 **MaterialXS** is an "eXtra Small" `Python` implementation of _MaterialX_, released on April 25th 2017 by _J Cube Inc._ as open source under the Apache 2.0 License. _MaterialXS_ is specifically designed to ease the transfer of materials (full shading networks) and look–development content between DCC without the need for the _MaterialX_ C++ libraries.
